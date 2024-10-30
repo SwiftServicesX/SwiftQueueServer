@@ -13,7 +13,6 @@ You can download the latest stable release from the [releases section](https://g
 ## Requirements
 
 - A server connected to a BungeeCord proxy
-- A Spigot server
 
 ## How to Setup
 
