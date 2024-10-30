@@ -1,0 +1,14 @@
+xyz\swift\swiftqueueserver\listeners\JoinListener.class
+xyz\swift\swiftqueueserver\manager\queue\QueueManager.class
+xyz\swift\swiftqueueserver\bungee\BungeeCord.class
+xyz\swift\swiftqueueserver\commands\QueueSystem.class
+xyz\swift\swiftqueueserver\runnable\QueueRunnable$1.class
+xyz\swift\swiftqueueserver\SwiftQueueServer.class
+xyz\swift\swiftqueueserver\listeners\QuitListener.class
+xyz\swift\swiftqueueserver\commands\QueueCommand.class
+xyz\swift\swiftqueueserver\manager\User.class
+xyz\swift\swiftqueueserver\manager\UserManager.class
+xyz\swift\swiftqueueserver\utils\Configuration.class
+xyz\swift\swiftqueueserver\utils\Beat.class
+xyz\swift\swiftqueueserver\manager\queue\Queues.class
+xyz\swift\swiftqueueserver\runnable\QueueRunnable.class
