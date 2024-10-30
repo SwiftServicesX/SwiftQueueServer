@@ -39,3 +39,7 @@ To compile SwiftQueueServer, you’ll need:
 
 - JDK 8 (or above)
 - Maven: run `mvn clean install` to build.
+
+## Contributing
+
+Feel free to contribute! Whether you have suggestions, bug fixes, or new features in mind.
