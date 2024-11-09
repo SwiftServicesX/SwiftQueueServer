@@ -4,12 +4,12 @@ import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 
-public class Queues {
+public class Queue {
 
     private final String queueServer;
     private final ArrayList<Player> totalQueue;
 
-    public Queues(final String queue) {
+    public Queue(final String queue) {
         this.queueServer = queue;
         this.totalQueue = new ArrayList<>();
     }

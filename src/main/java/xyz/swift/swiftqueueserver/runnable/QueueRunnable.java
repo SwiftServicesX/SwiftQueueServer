@@ -6,7 +6,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import xyz.swift.swiftqueueserver.SwiftQueueServer;
 import xyz.swift.swiftqueueserver.bungee.BungeeCord;
 import xyz.swift.swiftqueueserver.manager.User;
-import xyz.swift.swiftqueueserver.manager.queue.Queues;
+import xyz.swift.swiftqueueserver.manager.queue.Queue;
 
 import java.util.List;
 
@@ -25,36 +25,36 @@ public class QueueRunnable {
 
     private static void processQueues(List<String> servers) {
         for (String serverName : servers) {
-            Queues queues = SwiftQueueServer.getInstance().getQueueManager().getQueue(serverName.toLowerCase());
+            Queue queue = SwiftQueueServer.getInstance().getQueueManager().getQueue(serverName.toLowerCase());
             for (Player player : Bukkit.getOnlinePlayers()) {
-                if (queues.getTotalQueue().contains(player)) {
+                if (queue.getTotalQueue().contains(player)) {
                     User user = SwiftQueueServer.getInstance().getPlayerManager().getUser(player);
                     if (user.getPosition() == 1) {
-                        handlePlayerQueue(user, player, queues);
+                        handlePlayerQueue(user, player, queue);
                     }
                 }
             }
         }
     }
 
-    private static void handlePlayerQueue(User user, Player player, Queues queues) {
+    private static void handlePlayerQueue(User user, Player player, Queue queue) {
         user.setQueue("");
         user.setPosition(0);
         sendMessage(player, SwiftQueueServer.getInstance().getConfiguration().queueDone);
-        BungeeCord.sendPlayerToServer(player, queues.getQueueServer());
-        queues.removeQueue(player);
-        updateOtherPlayersInQueue(queues);
+        BungeeCord.sendPlayerToServer(player, queue.getQueueServer());
+        queue.removeQueue(player);
+        updateOtherPlayersInQueue(queue);
     }
 
-    private static void updateOtherPlayersInQueue(Queues queues) {
+    private static void updateOtherPlayersInQueue(Queue queue) {
         for (Player player : Bukkit.getOnlinePlayers()) {
             User user = SwiftQueueServer.getInstance().getPlayerManager().getUser(player);
-            if (user.getQueue().equalsIgnoreCase(queues.getQueueServer())) {
+            if (user.getQueue().equalsIgnoreCase(queue.getQueueServer())) {
                 int newPosition = user.getPosition() - 1;
                 user.setPosition(newPosition);
                 sendMessage(player, SwiftQueueServer.getInstance().getConfiguration().queueMove
                         .replace("%position%", String.valueOf(newPosition))
-                        .replace("%maxpos%", String.valueOf(queues.getTotalQueue().size())));
+                        .replace("%maxpos%", String.valueOf(queue.getTotalQueue().size())));
             }
         }
     }

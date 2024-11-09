@@ -1,6 +1,5 @@
 package xyz.swift.swiftqueueserver.utils;
 
-import net.md_5.bungee.api.ChatColor;
 import xyz.swift.swiftqueueserver.SwiftQueueServer;
 
 import java.util.List;
@@ -12,13 +11,13 @@ public class Configuration {
     public String queueMove;
     public String queueDone;
     public String bypassPerm;
-    public int Max_Queue_Size;
-    public String Queue_Full;
-    public boolean Notify_Position_Change;
-    public String Join_Queue_Sound;
-    public String Leave_Queue_Sound;
-    public String Wait_Time_Message;
-    public boolean Maintenance_Mode;
+    public int maxQueueSize;
+    public String queueFull;
+    public boolean notifyPositionChange;
+    public String joinQueueSound;
+    public String leaveQueueSound;
+    public String waitTimeMessage;
+    public boolean maintenanceMode;
     public List<String> servers;
     public boolean system;
 
@@ -30,20 +29,20 @@ public class Configuration {
     }
 
     private void reloadConfigData() {
-        prefix = translateConfigValue("Prefix");
+        prefix = Colorize.colorize("Prefix");
 
-        queueAdded = translateConfigValue("Queue_Messages.Queue_Added");
-        queueMove = translateConfigValue("Queue_Messages.Queue_Move");
-        queueDone = translateConfigValue("Queue_Messages.Queue_Done");
+        queueAdded = Colorize.colorize("Queue_Messages.Queue_Added");
+        queueMove = Colorize.colorize("Queue_Messages.Queue_Move");
+        queueDone = Colorize.colorize("Queue_Messages.Queue_Done");
 
         bypassPerm = SwiftQueueServer.getInstance().file.getString("Bypass_Perm");
-        Max_Queue_Size = SwiftQueueServer.getInstance().file.getInt("Max_Queue_Size");
-        Queue_Full = translateConfigValue("Queue_Full");
-        Notify_Position_Change = SwiftQueueServer.getInstance().file.getBoolean("Notify_Position_Change");
-        Join_Queue_Sound = SwiftQueueServer.getInstance().file.getString("Join_Queue_Sound");
-        Leave_Queue_Sound = SwiftQueueServer.getInstance().file.getString("Leave_Queue_Sound");
-        Wait_Time_Message = translateConfigValue("Wait_Time_Message");
-        Maintenance_Mode = SwiftQueueServer.getInstance().file.getBoolean("Maintenance_Mode");
+        maxQueueSize = SwiftQueueServer.getInstance().file.getInt("Max_Queue_Size");
+        queueFull = Colorize.colorize("Queue_Full");
+        notifyPositionChange = SwiftQueueServer.getInstance().file.getBoolean("Notify_Position_Change");
+        joinQueueSound = SwiftQueueServer.getInstance().file.getString("Join_Queue_Sound");
+        leaveQueueSound = SwiftQueueServer.getInstance().file.getString("Leave_Queue_Sound");
+        waitTimeMessage = Colorize.colorize("Wait_Time_Message");
+        maintenanceMode = SwiftQueueServer.getInstance().file.getBoolean("Maintenance_Mode");
 
         servers = SwiftQueueServer.getInstance().file.getStringList("Servers");
         servers.forEach(server -> {
@@ -52,9 +51,5 @@ public class Configuration {
         });
 
         system = true; // Indicate that the system is active
-    }
-
-    private String translateConfigValue(final String key) {
-        return ChatColor.translateAlternateColorCodes('&', SwiftQueueServer.getInstance().file.getString(key));
     }
 }

@@ -1,11 +1,19 @@
 package xyz.swift.swiftqueueserver.manager;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.UUID;
 
 public class User {
+    @Getter
     private final String name;
     private final UUID uuid;
+    @Setter
+    @Getter
     private int position;
+    @Setter
+    @Getter
     private String queue;
 
     public User(final UUID uuid, final String name) {
@@ -15,27 +23,8 @@ public class User {
         this.queue = "";
     }
 
-    public String getName() {
-        return this.name;
-    }
-
     public UUID getUUID() {
         return this.uuid;
     }
 
-    public int getPosition() {
-        return this.position;
-    }
-
-    public String getQueue() {
-        return this.queue;
-    }
-
-    public void setPosition(final int position) {
-        this.position = position;
-    }
-
-    public void setQueue(final String queue) {
-        this.queue = queue;
-    }
 }

@@ -15,24 +15,16 @@ public class QueueSystem implements CommandExecutor {
             return true;
         }
 
-        if (args[0].equalsIgnoreCase("on")) {
-            turnOnQueueSystem(sender);
-        } else if (args[0].equalsIgnoreCase("off")) {
-            turnOffQueueSystem(sender);
-        } else {
+        String param = args[0].toLowerCase();
+        if (!"on".equals(param) && !"off".equals(param)) {
             sender.sendMessage(formatMessage("&cUsage: /system <on|off>"));
+            return true;
         }
+
+        boolean enabled = "on".equals(param);
+        SwiftQueueServer.getInstance().getConfiguration().system = enabled;
+        sender.sendMessage(formatMessage("&7The queue system is successfully " + (enabled ? "&aonline" : "&coffline") + "&7!"));
         return true;
-    }
-
-    private void turnOnQueueSystem(final CommandSender sender) {
-        SwiftQueueServer.getInstance().getConfiguration().system = true;
-        sender.sendMessage(formatMessage("&7The queue system is successfully &aonline&7!"));
-    }
-
-    private void turnOffQueueSystem(final CommandSender sender) {
-        SwiftQueueServer.getInstance().getConfiguration().system = false;
-        sender.sendMessage(formatMessage("&7The queue system is successfully &coffline&7!"));
     }
 
     private String formatMessage(final String message) {
