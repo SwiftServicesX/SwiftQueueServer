@@ -8,7 +8,7 @@ This idea was originally suggested by Sprock / Cobble Sword, who didn’t finish
 
 ## Download
 
-You can download the latest stable release from the [releases section](https://github.com/yourusername/SwiftQueueServer/releases). The API can be obtained from our Discord server.
+You can download the latest stable release from the [releases section](https://github.com/SwiftServicesX/SwiftQueueServer/releases). The API can be obtained from our Discord server.
 
 ## Requirements
 
